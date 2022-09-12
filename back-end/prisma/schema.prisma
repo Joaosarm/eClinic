@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model days {
+  id        Int      @id @default(autoincrement())
+  doctorId  Int      @unique
+  monday    Boolean? @default(false)
+  tuesday   Boolean? @default(false)
+  wednesday Boolean? @default(false)
+  thursday  Boolean? @default(false)
+  friday    Boolean? @default(false)
+  doctors   doctors  @relation(fields: [doctorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model doctors {
+  id               Int             @id @default(autoincrement())
+  name             String          @unique
+  picture          String
+  description      String
+  specializationId Int
+  specializations  specializations @relation(fields: [specializationId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  days             days?
+  schedules        schedules[]
+  shifts           shifts[]
+}
+
+model schedules {
+  id       Int     @id @default(autoincrement())
+  userId   Int
+  doctorId Int
+  day      String
+  hour     String
+  doctors  doctors @relation(fields: [doctorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users    users   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model shifts {
+  id        Int      @id @default(autoincrement())
+  doctorId  Int
+  morning   Boolean? @default(false)
+  afternoon Boolean? @default(false)
+  doctors   doctors  @relation(fields: [doctorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model specializations {
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  doctors doctors[]
+}
+
+model users {
+  id        Int         @id @default(autoincrement())
+  email     String      @unique
+  password  String
+  name      String
+  age       Int
+  schedules schedules[]
+}

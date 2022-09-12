@@ -1,0 +1,30 @@
+*{
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  user-select: none;
+  width: 100vw;
+  box-sizing: border-box;
+  overflow-y: scroll !important;
+}
+
+#root{
+  width: 100vw;
+  height: 100vh;
+}
+
+:root{
+  --logoFont: 'Teko', sans-serif;
+  --primaryFont: 'raleway', sans-serif;
+  --highlightColorDarker: #246077;
+  --fundo: #cfe9f3;
+}
+
+a:link {
+  text-decoration: none;
+  color: var(--highlightColorDarker);
+}

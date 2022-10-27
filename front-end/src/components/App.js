@@ -36,4 +36,6 @@ function App() {
   );
 }
 
+//TESTS
+
 export default App;

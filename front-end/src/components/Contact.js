@@ -12,7 +12,7 @@ export default function Contact() {
                         <p></p>
                         EDC Exta Doctor Center
                         <p></p>
-                        Av. Algum Lugar, 370, Torre Business, Sala 3342.
+                        Av. Algum Lugar, 370, Torre Business, Sala 3342. Testing
                     </p>
                     <p>
                         EMAIL - eClinic@eClinic.com
